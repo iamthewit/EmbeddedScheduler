@@ -19,6 +19,15 @@ repositories {
 }
 
 dependencies {
+	implementation(platform("software.amazon.awssdk:bom:2.27.21"))
+	// With the bom declared, you specify individual SDK dependencies without a version.
+
+	// https://mvnrepository.com/artifact/software.amazon.awssdk/eventbridge
+	implementation("software.amazon.awssdk:eventbridge:2.31.21")
+
+	// https://mvnrepository.com/artifact/software.amazon.awssdk/scheduler
+	implementation("software.amazon.awssdk:scheduler:2.31.21")
+
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-quartz")
