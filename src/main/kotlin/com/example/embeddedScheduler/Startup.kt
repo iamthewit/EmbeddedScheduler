@@ -11,14 +11,14 @@ import java.util.UUID
 @Component
 class Startup(
     val scheduler: Scheduler,
-    @Qualifier("amazonEventBridgeScheduleCreator"
-//    @Qualifier("quartzScheduleCreator"
+//    @Qualifier("amazonEventBridgeScheduleCreator"
+    @Qualifier("quartzScheduleCreator"
     ) val scheduleCreator: ScheduleCreator) {
     @EventListener(ApplicationReadyEvent::class)
     fun doSomethingAfterStartup() {
         println("hello world, I have just started up")
 
-        for (i in 1..100) {
+        for (i in 1..5) {
             scheduleCreator.createJob(
                 ReleaseOrderJob::class.java,
                 UUID.randomUUID().toString(),
