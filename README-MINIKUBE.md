@@ -34,3 +34,9 @@ Check the deployment status:
 Port-forward the PostgreSQL service to your local machine:
 
 `kubectl port-forward service/postgres 5432:5432`
+
+## Look at the logs of a pod
+`kubectl logs -f <pod-name>`
+
+## Delete deployment
+`kubectl delete -f k8s-deployment.yaml`
