@@ -6,8 +6,11 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean
 
 @Bean
 fun scheduler(factory: SchedulerFactoryBean): Scheduler {
-    val scheduler = factory.scheduler;
-    scheduler.start();
+    // Get the scheduler from the factory bean
+    val scheduler = factory.scheduler
 
-    return scheduler;
+    // Start the scheduler
+    scheduler.start()
+
+    return scheduler
 }
