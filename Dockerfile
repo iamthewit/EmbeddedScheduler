@@ -1,14 +1,12 @@
-# Use a lightweight JDK base image
-FROM eclipse-temurin:21-jdk-alpine
-
-# Set the working directory
+# Stage 1: Build the application
+FROM gradle:8.5-jdk21-alpine AS builder
 WORKDIR /app
+COPY . .
+RUN gradle build --no-daemon -x test
 
-# Copy the build output
-COPY build/libs/*.jar app.jar
-
-# Expose the default Spring Boot port
+# Stage 2: Run the application
+FROM eclipse-temurin:21-jdk-alpine
+WORKDIR /app
+COPY --from=builder /app/build/libs/*.jar app.jar
 EXPOSE 8080
-
-# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
