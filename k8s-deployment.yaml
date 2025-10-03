@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:latest
+          image: postgres:17-alpine
           env:
             - name: POSTGRES_DB
               valueFrom:
@@ -91,6 +91,10 @@ spec:
       labels:
         app: embedded-scheduler
     spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: postgres:17-alpine
+          command: [ 'sh', '-c', 'until pg_isready -h postgres -p 5432; do sleep 2; done' ]
       containers:
         - name: app
           image: embedded-scheduler:latest

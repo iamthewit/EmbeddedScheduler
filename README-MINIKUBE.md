@@ -8,10 +8,7 @@ Start Minikube:
 
 Build the application JAR:
 
-Note: You need to have the DB running in docker to build at the moment. 
-Haven't figured out how to deal with this yet.
-
-`./gradlew build`
+`./gradlew build -x test`
 
 Build and load the Docker image into Minikube:
 

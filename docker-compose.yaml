@@ -15,7 +15,7 @@ services:
       - database
 
   database:
-    image: postgres:latest
+    image: postgres:17-alpine
     user: "${UID}:${GID}"
     ports:
       - "5432:5432"
